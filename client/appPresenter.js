@@ -43,7 +43,8 @@ export default class AppPresenter extends React.Component {
     // <--------------          socket           --------------> //
 
     this._socket = SocketIOClient("https://catadmin.gq", {
-      query: this.props.token
+      query: this.props.token,
+      transports: ["websocket"]
     });
 
     this._socket.on("info", myInfo => {
@@ -64,6 +65,7 @@ export default class AppPresenter extends React.Component {
     });
 
     this._socket.on("disconnect", async () => {
+      console.log("disconnected");
       await this.setState({
         disconnectornot: true
       });
@@ -134,6 +136,7 @@ export default class AppPresenter extends React.Component {
     });
 
     this._socket.on("leftTime", leftTime => {
+      console.log("leftTime", leftTime);
       this.setState({ leftTime });
     });
 

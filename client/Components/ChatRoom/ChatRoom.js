@@ -165,10 +165,11 @@ export default class ChatRoom extends React.Component {
   // 앱이 백그라운드에서 다시 돌아왔을 때 실행
   _handleAppStateChange = nextAppState => {
     if (
-      this.state.appState.match(/inactive|background/) &&
+      this.state.appState.match(/active|background/) &&
       nextAppState === "active"
     ) {
-      context.socket.emit("leftTime");
+      context.socket.emit("leaveRoom");
+      context.resetchat();
     }
     this.setState({ appState: nextAppState });
   };
