@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { View, Text, Image, StyleSheet, Alert } from "react-native";
+import { View, Text, Image, StyleSheet, BackHandler } from "react-native";
 import Store from "../store";
 
 export default class Loading extends Component {
@@ -12,6 +12,10 @@ export default class Loading extends Component {
   };
   async componentDidMount() {
     try {
+      await BackHandler.addEventListener(
+        "hardwareBackPress",
+        this._handleBackPress
+      );
       await navigator.geolocation.getCurrentPosition(position => {
         var lat = parseFloat(position.coords.latitude);
         var long = parseFloat(position.coords.longitude);
@@ -30,8 +34,12 @@ export default class Loading extends Component {
     }
   }
 
+  _handleBackPress = () => {
+    return true;
+  };
   componentWillUnmount() {
     clearTimeout(this.timeoutHandle); // This is just necessary in the case that the screen is closed before the timeout fires, otherwise it would cause a memory leak that would trigger the transition regardless, breaking the user experience.
+    BackHandler.removeEventListener("hardwareBackPress", this._handleBackPress);
   }
 
   render() {
