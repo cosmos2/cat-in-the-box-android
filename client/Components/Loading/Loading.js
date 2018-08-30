@@ -10,24 +10,11 @@ export default class Loading extends Component {
   static navigationOptions = {
     header: null
   };
-  async componentDidMount() {
-    try {
-      await navigator.geolocation.getCurrentPosition(position => {
-        var lat = parseFloat(position.coords.latitude);
-        var long = parseFloat(position.coords.longitude);
-        this.setState({
-          latitude: lat,
-          longitude: long
-        });
-      });
-      this.timeoutHandle = await setTimeout(() => {
-        const { latitude, longitude } = this.state;
-        socket.emit("findRoom", { latitude, longitude });
-        this.props.navigation.navigate("ChatRoomScreen");
-      }, 2500);
-    } catch (err) {
-      console.log(err);
-    }
+
+  componentDidMount() {
+    this.timeoutHandle = setTimeout(() => {
+      this.props.navigation.navigate("ChatRoomScreen");
+    }, 2500);
   }
 
   componentWillUnmount() {
