@@ -65,6 +65,7 @@ export default class AppPresenter extends React.Component {
     });
 
     this._socket.on("disconnect", async () => {
+      console.log("disconnected");
       await this.setState({
         disconnectornot: true
       });
@@ -135,6 +136,7 @@ export default class AppPresenter extends React.Component {
     });
 
     this._socket.on("leftTime", leftTime => {
+      console.log("leftTime", leftTime);
       this.setState({ leftTime });
     });
 
@@ -184,7 +186,6 @@ export default class AppPresenter extends React.Component {
     };
 
     this._muteControl = socketId => {
-      // Vibration.vibrate(100);
       for (var i = 0; i < this.state.roomusers.length; i++) {
         if (
           this.state.roomusers[i].userId === this.props.myUserId &&

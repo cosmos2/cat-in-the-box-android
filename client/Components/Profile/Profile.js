@@ -68,6 +68,7 @@ export default class Profile extends React.Component {
   };
   _handleBackPress = () => {
     this.props.navigation.navigate("OpenBoxScreen");
+    return true;
   };
   componentDidMount() {
     this.props.navigation.setParams({ navigation: this.props.navigation });

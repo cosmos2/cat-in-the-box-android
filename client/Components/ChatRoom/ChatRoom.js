@@ -84,6 +84,7 @@ export default class ChatRoom extends React.Component {
 
   _handleBackPress = () => {
     this._exitChat();
+    return true;
   };
 
   componentWillUpdate() {
@@ -166,12 +167,10 @@ export default class ChatRoom extends React.Component {
   _handleAppStateChange = nextAppState => {
     console.log("welcome back");
     if (
-      this.state.appState.match(/inactive|background/) &&
+      this.state.appState.match(/active|background/) &&
       nextAppState === "active"
     ) {
-      context.socket.emit("leaveRoom");
-      context.resetchat();
-      //context.socket.emit("leftTime");
+      context.socket.emit("leftTime");
     }
     this.setState({ appState: nextAppState });
   };

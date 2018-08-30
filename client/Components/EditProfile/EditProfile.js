@@ -1,5 +1,5 @@
 import React from "react";
-import { Text, View, Dimensions } from "react-native";
+import { Text, View, Dimensions, BackHandler } from "react-native";
 import Store from "../store";
 import Cat from "../Cat/Cat";
 import styles from "./styles";
@@ -41,6 +41,19 @@ export default class EditProfile extends React.Component {
       fontSize: 17
     }
   };
+
+  _handleBackPress = () => {
+    this.props.navigation.navigate("ProfileScreen");
+    return true;
+  };
+  componentDidMount() {
+    this.props.navigation.setParams({ navigation: this.props.navigation });
+    BackHandler.addEventListener("hardwareBackPress", this._handleBackPress);
+  }
+  componentWillUnmount() {
+    BackHandler.removeEventListener("hardwareBackPress", this._handleBackPress);
+  }
+
   render() {
     const upperCats = [1, 2, 3];
     const lowerCats = [4, 5, 6];
