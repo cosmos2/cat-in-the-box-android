@@ -40,8 +40,6 @@ class test extends Component {
       this.state.appState.match(/inactive|background/) &&
       nextAppState === "active"
     ) {
-      console.log("App has come to the foreground!");
-
       this.timeoutHandle = setTimeout(() => {
         context.disconnectcontrol();
       }, 1500);

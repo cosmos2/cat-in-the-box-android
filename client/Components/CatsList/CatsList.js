@@ -173,7 +173,6 @@ export default class CatsList extends Component {
                           height={40}
                           onPress={() => {
                             this.setState({ attackmode: false });
-                            console.log("공격 모드");
                           }}
                         >
                           <Text style={styles.punchtext}>
@@ -197,7 +196,6 @@ export default class CatsList extends Component {
                               attackmode: true,
                               healingmode: false
                             });
-                            console.log("공격 모드 해제");
                           }}
                         >
                           <Text style={styles.attacktext}>
