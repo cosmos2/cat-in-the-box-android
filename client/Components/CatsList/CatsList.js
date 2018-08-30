@@ -22,7 +22,6 @@ export default class CatsList extends Component {
     this.state = {
       muteornot: false,
       attackmode: false,
-      healingmode: false,
       myattacknum: 5,
       animatePress: new Animated.Value(1)
     };
@@ -79,17 +78,14 @@ export default class CatsList extends Component {
                               )
                               ? // && (this.props.myuserid === item.userId && item.hp <= 0)
                                 true
-                              : !!(
-                                  this.state.attackmode ||
-                                  this.state.healingmode
-                                )
+                              : this.state.attackmode
                                 ? false
                                 : true
                         }
                         onPress={
-                          !!(this.state.attackmode && !this.state.healingmode)
+                          this.state.attackmode
                             ? () => {
-                                Vibration.vibrate(100);
+                                // Vibration.vibrate(100);
                                 store.socket.emit("hit", item.socketId);
                                 this.setState({
                                   myattacknum: this.state.myattacknum - 1,
@@ -101,9 +97,7 @@ export default class CatsList extends Component {
                                   });
                                 }, 200);
                               }
-                            : !!(
-                                !this.state.attackmode && this.state.healingmode
-                              )
+                            : !!!this.state.attackmode
                               ? () => {}
                               : null
                         }
@@ -190,8 +184,7 @@ export default class CatsList extends Component {
                           height={40}
                           onPress={() => {
                             this.setState({
-                              attackmode: true,
-                              healingmode: false
+                              attackmode: true
                             });
                           }}
                         >

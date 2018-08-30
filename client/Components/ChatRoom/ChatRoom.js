@@ -12,6 +12,7 @@ import {
 import { Icon } from "react-native-elements";
 import Timer from "../Timer";
 import Store from "../store";
+import Disconnect from "../Disconnect/Disconnect";
 import CatsList from "../CatsList/CatsList";
 import Chat from "../Chat/Chat";
 
@@ -163,11 +164,14 @@ export default class ChatRoom extends React.Component {
 
   // 앱이 백그라운드에서 다시 돌아왔을 때 실행
   _handleAppStateChange = nextAppState => {
+    console.log("welcome back");
     if (
       this.state.appState.match(/inactive|background/) &&
       nextAppState === "active"
     ) {
-      context.socket.emit("leftTime");
+      context.socket.emit("leaveRoom");
+      context.resetchat();
+      //context.socket.emit("leftTime");
     }
     this.setState({ appState: nextAppState });
   };

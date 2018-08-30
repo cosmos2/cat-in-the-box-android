@@ -43,7 +43,8 @@ export default class AppPresenter extends React.Component {
     // <--------------          socket           --------------> //
 
     this._socket = SocketIOClient("https://catadmin.gq", {
-      query: this.props.token
+      query: this.props.token,
+      transports: ["websocket"]
     });
 
     this._socket.on("info", myInfo => {
@@ -183,7 +184,7 @@ export default class AppPresenter extends React.Component {
     };
 
     this._muteControl = socketId => {
-      Vibration.vibrate(100);
+      // Vibration.vibrate(100);
       for (var i = 0; i < this.state.roomusers.length; i++) {
         if (
           this.state.roomusers[i].userId === this.props.myUserId &&

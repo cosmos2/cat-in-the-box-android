@@ -36,6 +36,7 @@ class test extends Component {
   }
 
   _handleAppStateChange = nextAppState => {
+    console.log("this is background ");
     if (
       this.state.appState.match(/inactive|background/) &&
       nextAppState === "active"
