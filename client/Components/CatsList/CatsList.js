@@ -89,7 +89,6 @@ export default class CatsList extends Component {
                         onPress={
                           !!(this.state.attackmode && !this.state.healingmode)
                             ? () => {
-                                Vibration.vibrate(100);
                                 store.socket.emit("hit", item.socketId);
                                 this.setState({
                                   myattacknum: this.state.myattacknum - 1,
