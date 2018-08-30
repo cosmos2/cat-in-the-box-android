@@ -83,6 +83,7 @@ export default class ChatRoom extends React.Component {
 
   _handleBackPress = () => {
     this._exitChat();
+    return true;
   };
 
   componentWillUpdate() {
