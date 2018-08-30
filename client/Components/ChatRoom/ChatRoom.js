@@ -12,7 +12,6 @@ import {
 import { Icon } from "react-native-elements";
 import Timer from "../Timer";
 import Store from "../store";
-import Disconnect from "../Disconnect/Disconnect";
 import CatsList from "../CatsList/CatsList";
 import Chat from "../Chat/Chat";
 
@@ -165,7 +164,6 @@ export default class ChatRoom extends React.Component {
 
   // 앱이 백그라운드에서 다시 돌아왔을 때 실행
   _handleAppStateChange = nextAppState => {
-    console.log("welcome back");
     if (
       this.state.appState.match(/active|background/) &&
       nextAppState === "active"
@@ -196,19 +194,16 @@ const styles = StyleSheet.create({
   statespace: {
     width: width * 0.96,
     flex: 1
-    //margin: 5
   },
   chatroom: {
     flex: 1,
     width: width,
     margin: 5
-    //backgroundColor: "green"
   },
   options: {
     flex: 0.8,
     width: width * 0.9,
     justifyContent: "center",
     alignItems: "center"
-    // backgroundColor: "green"
   }
 });
