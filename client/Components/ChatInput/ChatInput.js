@@ -51,7 +51,11 @@ export default class ChatInput extends React.Component {
                   returnKeyType="send"
                   autoCorrect={false}
                   onSubmitEditing={() => {
-                    this._sendMessage(store.socket, this.state.message);
+                    this._sendMessage(
+                      store.socket,
+                      this.state.message,
+                      store.chatOver
+                    );
                   }}
                   underlineColorAndroid={"transparent"}
                 />
@@ -66,7 +70,11 @@ export default class ChatInput extends React.Component {
                     {
                       store.muteornot
                         ? Alert.alert("1분간 채팅 금지")
-                        : this._sendMessage(store.socket, this.state.message);
+                        : this._sendMessage(
+                            store.socket,
+                            this.state.message,
+                            store.chatOver
+                          );
                     }
                   }}
                 >
@@ -95,19 +103,20 @@ export default class ChatInput extends React.Component {
     );
   }
 
-  _sendMessage = (socket, message) => {
+  _sendMessage = (socket, message, chatOver) => {
     if (message.length > 0) {
       this.setState({
         clearInput: !this.state.clearInput,
         message: ""
       });
-
-      socket.emit("chat", {
-        message: message,
-        userId: this.state.myuserid,
-        catImage: this.state.mycatid,
-        nickname: this.state.mynickname
-      });
+      if (!chatOver) {
+        socket.emit("chat", {
+          message: message,
+          userId: this.state.myuserid,
+          catImage: this.state.mycatid,
+          nickname: this.state.mynickname
+        });
+      }
     }
   };
 
