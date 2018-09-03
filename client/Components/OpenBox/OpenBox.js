@@ -44,6 +44,7 @@ export default class OpenBox extends React.Component {
   }
   _handleBackPress = () => {
     BackHandler.exitApp();
+    return true;
   };
 
   static navigationOptions = ({ navigation }) => {
