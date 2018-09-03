@@ -21,8 +21,6 @@ export default class OpenBox extends React.Component {
     super(props);
 
     this.state = {
-      latitude: 0,
-      longitude: 0,
       tutorial: false
     };
 
@@ -112,14 +110,6 @@ export default class OpenBox extends React.Component {
     this.props.navigation.setParams({ openProfile: this._openProfile });
     BackHandler.addEventListener("hardwareBackPress", this._handleBackPress);
     this.props.navigation.setParams({ toggleTutorial: this._toggleTutorial });
-    navigator.geolocation.getCurrentPosition(position => {
-      var lat = parseFloat(position.coords.latitude);
-      var long = parseFloat(position.coords.longitude);
-      this.setState({
-        latitude: lat,
-        longitude: long
-      });
-    });
   }
   componentWillMount() {
     this.animatedValue = new Animated.Value(1);
@@ -168,9 +158,9 @@ export default class OpenBox extends React.Component {
     );
   }
   _findRoom = async socket => {
-    const { latitude, longitude } = this.state;
+    // const { latitude, longitude } = this.state;
     try {
-      await socket.emit("findRoom", { latitude, longitude });
+      // await socket.emit("findRoom", { latitude, longitude });
       await this.props.navigation.navigate("LoadingScreen");
     } catch (err) {
       console.log(err);
