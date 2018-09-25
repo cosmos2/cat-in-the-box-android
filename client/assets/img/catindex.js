@@ -20,9 +20,7 @@ const images = {
   mute: require("./mute.png"),
   tuto1: require("./tuto1.png"),
   tuto2: require("./tuto2.png"),
-  tuto3: require("./tuto3.png"),
-  tuto4: require("./tuto4.png"),
-  tuto5: require("./tuto5.png")
+  tuto3: require("./tuto3.png")
 };
 
 export default images;

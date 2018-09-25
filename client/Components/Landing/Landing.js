@@ -14,14 +14,12 @@ export default class Landing extends Component {
     header: null
   };
   componentDidMount() {
-    //AppState.addEventListener("change", this._handleAppStateChange);
     this.timeoutHandle = setTimeout(() => {
       this._userInfo();
     }, 3000);
   }
 
   componentWillUnmount() {
-    //AppState.removeEventListener("change", this._handleAppStateChange);
     clearTimeout(this.timeoutHandle); // This is just necessary in the case that the screen is closed before the timeout fires, otherwise it would cause a memory leak that would trigger the transition regardless, breaking the user experience.
   }
 
@@ -45,15 +43,4 @@ export default class Landing extends Component {
       console.log(err);
     }
   };
-  // _handleAppStateChange = nextAppState => {
-  //   if (
-  //     this.state.appState.match(/inactive|background/) &&
-  //     nextAppState === "active"
-  //   ) {
-  //     this.timeoutHandle = setTimeout(() => {
-  //       this._userInfo();
-  //     }, 1700);
-  //   }
-  //   this.setState({ appState: nextAppState });
-  // };
 }

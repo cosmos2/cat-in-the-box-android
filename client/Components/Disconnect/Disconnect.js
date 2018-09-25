@@ -24,7 +24,7 @@ class test extends Component {
     BackHandler.addEventListener("hardwareBackPress", this._handleBackPress);
     if (this.state.appState === "active") {
       this.timeoutHandle = setTimeout(() => {
-        context.disconnectcontrol();
+        context.handleDisconnect();
       }, 1500);
     }
   }
@@ -41,7 +41,7 @@ class test extends Component {
       nextAppState === "active"
     ) {
       this.timeoutHandle = setTimeout(() => {
-        context.disconnectcontrol();
+        context.handleDisconnect();
       }, 1500);
     }
     this.setState({ appState: nextAppState });

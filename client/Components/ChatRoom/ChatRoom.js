@@ -86,7 +86,8 @@ export default class ChatRoom extends React.Component {
     return true;
   };
 
-  componentWillUpdate() {
+  componentDidUpdate() {
+    console.log(context.muteornot);
     context.muteornot
       ? this.props.navigation.navigate("MuteScreen")
       : this.props.navigation.navigate("ChatRoomScreen");

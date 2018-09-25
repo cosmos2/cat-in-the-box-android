@@ -89,26 +89,6 @@ export default class SelectCat extends Component {
                 />
               </View>
               <View style={styles.blank} />
-              <View style={styles.wrapper}>
-                <Image
-                  source={Images["tuto4"]}
-                  style={{
-                    width: width * 0.6,
-                    height: height * 0.6,
-                    marginTop: 10
-                  }}
-                />
-              </View>
-              <View style={styles.wrapper}>
-                <Image
-                  source={Images["tuto5"]}
-                  style={{
-                    width: width * 0.6,
-                    height: height * 0.6,
-                    marginTop: 10
-                  }}
-                />
-              </View>
             </ScrollView>
           </View>
         </Modal>
@@ -150,7 +130,7 @@ const styles = StyleSheet.create({
     // height: height * 0.7
   },
   title: {
-    fontSize: 40,
+    fontSize: 30,
     fontFamily: "Goyang"
   },
   wrapper: {

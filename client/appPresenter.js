@@ -67,7 +67,7 @@ export default class AppPresenter extends React.Component {
     this._socket.on("disconnect", async () => {
       console.log("disconnected");
       await this.setState({
-        disconnectornot: true
+        isDisconnect: true
       });
       await this._resetchat();
     });
@@ -179,9 +179,9 @@ export default class AppPresenter extends React.Component {
       });
     };
 
-    this._disconnectControl = () => {
+    this._handleDisconnect = () => {
       this.setState({
-        disconnectornot: false
+        isDisconnect: false
       });
     };
 
@@ -222,8 +222,8 @@ export default class AppPresenter extends React.Component {
       mutecontrol: this._muteControl,
       test: this._test,
       mutepushcount: 0,
-      disconnectornot: false,
-      disconnectcontrol: this._disconnectControl,
+      isDisconnect: false,
+      handleDisconnect: this._handleDisconnect,
       chatOver: false,
       typing: thisroomcats
     };
@@ -238,7 +238,7 @@ export default class AppPresenter extends React.Component {
   }
 
   render() {
-    return this.state.disconnectornot ? (
+    return this.state.isDisconnect ? (
       <Store.Provider value={this.state}>
         <Disconnect />
       </Store.Provider>

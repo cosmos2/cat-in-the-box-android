@@ -27,6 +27,7 @@ export default class Loading extends Component {
     }
   }
   async componentDidUpdate() {
+    console.log(this.state);
     if (this.state.loaded) {
       const { latitude, longitude } = this.state;
       await this.setState({ latitude: null, longitude: null, loaded: false });
@@ -40,7 +41,6 @@ export default class Loading extends Component {
   };
   componentWillUnmount() {
     BackHandler.removeEventListener("hardwareBackPress", this._handleBackPress);
-    this.setState({ latitude: null, longitude: null, loaded: false });
   }
 
   render() {
